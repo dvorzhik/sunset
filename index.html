@@ -19,6 +19,9 @@
       --card-border: #e2e8f0;
       --accent: #ca8a04;
       --accent-hover: #a16207;
+      --accent-soft: #fef3c7;
+      --accent-border: #fcd34d;
+      --accent-shadow: rgba(202, 138, 4, 0.18);
       --text-main: #0f172a;
       --text-muted: #475569;
       --link: #0284c7;
@@ -283,6 +286,75 @@
       font-size: 0.9rem;
     }
 
+    /* ---------- Кофейная кнопка у заголовка сайта ---------- */
+    /* h1 и кнопка стоят в одну строку: заголовок занимает всю доступную
+       ширину и центрирует свой текст, а кнопка прижимается к правому
+       краю через margin-left: auto. Ширина заголовка не зависит от
+       кнопки (flex: 1 + min-width: 0), поэтому центр текста совпадает с
+       центром блока, а на узких экранах кнопка переносится под заголовок */
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .title-row h1 {
+      flex: 1 1 0;
+      min-width: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .coffee-thanks {
+      display: block;
+      flex: 0 0 auto;
+      margin-left: auto;
+      margin-right: 0;
+      width: 78px;
+      border-radius: 12px;
+      border: 1px solid var(--accent-border);
+      overflow: hidden;
+      background: var(--accent-soft);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .coffee-thanks img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+
+    .coffee-thanks:hover,
+    .coffee-thanks:focus-visible {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px var(--accent-shadow);
+    }
+
+    .coffee-thanks:hover img,
+    .coffee-thanks:focus-visible img {
+      transform: scale(1.06);
+    }
+
+    .coffee-thanks:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .coffee-thanks,
+      .coffee-thanks img {
+        transition: none;
+      }
+      .coffee-thanks:hover,
+      .coffee-thanks:hover img {
+        transform: none;
+      }
+    }
+
     /* ---------- Кнопка поддержки ---------- */
     .footer-inner {
       display: flex;
@@ -366,6 +438,21 @@
       .top-title-sec h1 {
         font-size: 1.6rem;
       }
+      /* Держим кнопку в масштабе уменьшившегося заголовка */
+      .coffee-thanks {
+        width: 64px;
+      }
+      /* Кнопка уходит на свою строку: заголовок снова занимает всю ширину,
+         а кнопка встаёт по центру под ним */
+      .title-row {
+        justify-content: center;
+      }
+      .title-row h1 {
+        flex-basis: 100%;
+      }
+      .coffee-thanks {
+        margin-left: 0;
+      }
     }
 
     @media (max-width: 480px) {
@@ -374,6 +461,10 @@
       }
       .top-title-sec h1 {
         font-size: 1.35rem;
+      }
+      .coffee-thanks {
+        width: 54px;
+        border-radius: 10px;
       }
     }
   </style>
@@ -384,7 +475,19 @@
 
     <!-- Заголовок -->
     <div class="top-title-sec">
-      <h1>DVORZHIK - ВАЙБКОДИНГ</h1>
+      <div class="title-row">
+        <h1>DVORZHIK - ВАЙБКОДИНГ</h1>
+        <a class="coffee-thanks"
+           href="https://web.tribute.tg/d/QPI"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Угостить автора кофе">
+          <img src="images/coffee_thanks.jpg"
+               alt="Угостить автора кофе — поддержать проект"
+               width="1024"
+               height="1024" />
+        </a>
+      </div>
     </div>
 
     <!-- DrawStory -->
