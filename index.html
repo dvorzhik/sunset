@@ -80,13 +80,6 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .panel h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: var(--text-main);
-    }
-
     .panel p {
       color: var(--text-muted);
       font-size: 1.02rem;
@@ -206,25 +199,73 @@
       overflow: hidden;
     }
 
-    .back-link {
-      display: inline-block;
-      margin: 10px 0 40px;
-      font-weight: 600;
-    }
+    /* ---------- Подвал ---------- */
     footer {
       border-top: 1px solid var(--card-border);
-      padding: 35px 0;
-      text-align: center;
+      margin-top: 60px;
+      padding: 28px 0;
       color: var(--text-muted);
       font-size: 0.9rem;
     }
 
-    /* ---------- Кнопка поддержки ---------- */
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
+    .footer-copy {
+      justify-self: center;
+      text-align: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-copy:hover {
+      color: var(--accent);
+    }
+
+    .footer-btn {
+      justify-self: start;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--accent-hover);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .footer-btn:hover,
+    .footer-btn:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(202, 138, 4, 0.25);
+    }
+
+    .footer-btn:active {
+      transform: translateY(0);
+    }
+
+    .footer-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Кнопка поддержки ---------- */
+    /* Подвал: кнопка «К проектам» слева, копирайт строго по центру,
+       кнопка поддержки справа. Боковые колонки равны (1fr), поэтому
+       центр не съезжает. */
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
       gap: 10px 16px;
     }
 
@@ -281,6 +322,11 @@
       outline-offset: 3px;
     }
 
+    /* В подвале кнопка поддержки прижата к правому краю */
+    .footer-inner .support-btn {
+      justify-self: end;
+    }
+
     @media (max-width: 820px) {
       .top-title-sec h1 {
         font-size: 1.6rem;
@@ -303,6 +349,18 @@
       .shots {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 10px;
+      }
+      /* На узких экранах подвал складывается в одну колонку по центру */
+      .footer-inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .footer-btn,
+      .footer-copy {
+        justify-self: center;
+      }
+      .footer-inner .support-btn {
+        justify-self: center;
       }
     }
 
@@ -336,7 +394,6 @@
 
     <!-- Карточка «Закаты» -->
     <section class="panel">
-      <h2>Закаты</h2>
       <p>Нельзя просто так взять, переехать к морю и не фотографировать закаты каждый вечер. Местный свет, рифы и волны Ахзива делают своё дело - камера включается сама собой. Здесь - небольшая часть того, на что невозможно было перестать смотреть.</p>
       <div class="shots">
         <figure class="shot">
@@ -427,27 +484,28 @@
           <img src="images/sunset/135.jpg" alt="Закат 29" loading="lazy" />
         </figure>
         <figure class="shot">
-          <img src="images/sunset/186.jpg" alt="Закат 30" loading="lazy" />
+          <img src="images/sunset/137.jpg" alt="Закат 30" loading="lazy" />
         </figure>
         <figure class="shot">
-          <img src="images/sunset/191.jpg" alt="Закат 31" loading="lazy" />
+          <img src="images/sunset/186.jpg" alt="Закат 31" loading="lazy" />
         </figure>
         <figure class="shot">
-          <img src="images/sunset/204.jpg" alt="Закат 32" loading="lazy" />
+          <img src="images/sunset/191.jpg" alt="Закат 32" loading="lazy" />
         </figure>
         <figure class="shot">
-          <img src="images/sunset/222.jpg" alt="Закат 33" loading="lazy" />
+          <img src="images/sunset/204.jpg" alt="Закат 33" loading="lazy" />
         </figure>
         <figure class="shot">
-          <img src="images/sunset/247.jpg" alt="Закат 34" loading="lazy" />
+          <img src="images/sunset/222.jpg" alt="Закат 34" loading="lazy" />
         </figure>
         <figure class="shot">
-          <img src="images/sunset/260.jpg" alt="Закат 35" loading="lazy" />
+          <img src="images/sunset/247.jpg" alt="Закат 35" loading="lazy" />
+        </figure>
+        <figure class="shot">
+          <img src="images/sunset/260.jpg" alt="Закат 36" loading="lazy" />
         </figure>
       </div>
     </section>
-
-    <a class="back-link" href="../index.html">← Назад к проектам</a>
 
   </main>
 
@@ -461,19 +519,18 @@
   </div>
 
   <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>© Aleksandr Dvorzhitckii</div>
-        <a class="support-btn"
-           id="supportBtn"
-           href="https://web.tribute.tg/d/QPI"
-           target="_blank"
-           rel="noopener noreferrer"
-           title="Поддержать проект">
-          <span class="support-btn__icon" id="supportIcon" aria-hidden="true">❤️</span>
-          <span class="support-btn__label" id="supportLabel">Сказать спасибо</span>
-        </a>
-      </div>
+    <div class="container footer-inner">
+      <a class="footer-btn" href="https://www.dvorzhik.ru/">К проектам</a>
+      <a class="footer-copy" href="https://t.me/dvorzhik" target="_blank" rel="noopener noreferrer">© Aleksandr Dvorzhitckii</a>
+      <a class="support-btn"
+         id="supportBtn"
+         href="https://web.tribute.tg/d/QPI"
+         target="_blank"
+         rel="noopener noreferrer"
+         title="Поддержать проект">
+        <span class="support-btn__icon" id="supportIcon" aria-hidden="true">❤️</span>
+        <span class="support-btn__label" id="supportLabel">Сказать спасибо</span>
+      </a>
     </div>
   </footer>
 
